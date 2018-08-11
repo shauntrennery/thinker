@@ -1,0 +1,17 @@
+{
+  "version": "0.1.0",
+  "site": {
+    "description": "thinker is a social game for the trivia heads.",
+    "keywords": "thinker, trivia, hq, social game, swipe, brag.",
+    "title": "thinker | Swipe. Rank. Brag.",
+    "titleTemplate": "thinker | %s"
+  },
+  "firebase": {
+    "apiKey": "AIzaSyAXlvcAjUy42fNmN1diDmqh56QHXLyjcGg",
+    "authDomain": "thinker-66cee.firebaseapp.com",
+    "databaseURL": "https://thinker-66cee.firebaseio.com",
+    "projectId": "thinker-66cee",
+    "storageBucket": "thinker-66cee.appspot.com",
+    "messagingSenderId": "792771054238"
+  }
+}
