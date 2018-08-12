@@ -58,7 +58,7 @@ class Intro extends Component {
         <Copy>
           Get your name on the <u>global leaderboard</u> by swiping through the following 10 questions in the <u>quickest</u> time.
         </Copy>
-        <Button to="/game">Begin</Button>
+        <Button to="/swipe">Begin</Button>
         <Leaderboard to="/leaderboard">Leaderboard</Leaderboard>
       </Fragment>
     )

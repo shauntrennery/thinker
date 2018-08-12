@@ -1,4 +1,5 @@
 import { logic as appLogic } from './controllers/app'
+import { logic as questionsLogic } from './controllers/questions'
 import { logic as unsplashLogic } from './controllers/unsplash'
 
-export default [...appLogic, ...unsplashLogic]
+export default [...appLogic, ...questionsLogic, ...unsplashLogic]

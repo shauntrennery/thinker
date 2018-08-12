@@ -1,5 +1,5 @@
 import React from 'react'
 
-const NoMatch = () => <div>No Match</div>
+const NoMatch = () => <div>Huh?</div>
 
 export default NoMatch

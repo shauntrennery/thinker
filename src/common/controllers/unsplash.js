@@ -10,7 +10,7 @@ export const constants = {
 
   RANDOM: 'unsplash.random',
   RANDOM_ERROR: 'unsplash.random.error',
-  RANDOM_SUCCESS: 'unsplash.random.error'
+  RANDOM_SUCCESS: 'unsplash.random.success'
 }
 
 export const actions = {
@@ -20,14 +20,23 @@ export const actions = {
 }
 
 const initialState = {
-  current: undefined
+  current: undefined,
+  error: undefined
 }
 
 export const reducer = function(state = initialState, action) {
   switch (action.type) {
+    case constants.RANDOM: {
+      return lib._.assign({}, state, { error: undefined })
+    }
+
+    case constants.RANDOM_ERROR: {
+      return lib._.assign({}, state, { error: action.error })
+    }
+
     case constants.RANDOM_SUCCESS: {
       if (action.payload) {
-        return lib._.assign({}, state, { current: action.payload.urls.regular })
+        return lib._.assign({}, state, { current: action.payload.urls.regular, error: undefined })
       } else {
         return state
       }
@@ -40,7 +49,8 @@ export const reducer = function(state = initialState, action) {
 
 export const selectors = {
   unsplash: () => state => utils.fromState(state, 'unsplash'),
-  current: () => lib.createSelector(selectors.unsplash(), state => utils.fromState(state, 'current'))
+  current: () => lib.createSelector(selectors.unsplash(), state => utils.fromState(state, 'current')),
+  error: () => lib.createSelector(selectors.unsplash(), state => utils.fromState(state, 'error'))
 }
 
 export const logic = [

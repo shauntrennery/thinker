@@ -1,4 +1,5 @@
 import { constants as app } from './controllers/app'
+import { constants as questions } from './controllers/questions'
 import { constants as unsplash } from './controllers/unsplash'
 
 const init = 'INIT'
@@ -14,5 +15,6 @@ export default {
   },
 
   app,
+  questions,
   unsplash
 }

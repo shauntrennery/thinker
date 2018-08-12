@@ -7,9 +7,10 @@ import Helmet from 'react-helmet'
 import { Route, Switch } from 'react-router'
 
 // pages
-import Game from './pages/Game'
+
 import Intro from './pages/Intro'
 import NoMatch from './pages/NoMatch'
+import Swipe from './pages/Swipe'
 
 const Background = common.lib.styled.div`
   background: url(${props => props.src}) no-repeat center center fixed; 
@@ -38,6 +39,7 @@ const Container = common.lib.styled.div`
   border-radius: 3px;
   padding: 20px;
   text-align: center;
+  overflow: hidden;
 `
 
 class App extends Component {
@@ -61,7 +63,7 @@ class App extends Component {
           <Container>
             <Switch>
               <Route exact path="/" component={Intro} />
-              <Route exact path="/game" component={Game} />
+              <Route exact path="/swipe" component={Swipe} />
               <Route component={NoMatch} />
             </Switch>
           </Container>

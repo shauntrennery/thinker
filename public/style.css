@@ -116,6 +116,7 @@ blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -123,10 +124,43 @@ q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+html {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
+}
+
+.card {
+  background-color: white;
+  background-size: cover;
+  position: absolute;
+  background: #f8f3f3;
+  height: 200px;
+  width: 180px;
+  margin: 0 auto;
+  transition: box-shadow 0.3s;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  cursor: pointer;
+}
+
+.animate {
+  transition: transform 0.3s;
+  box-shadow: none;
+}
+
+.inactive {
+  box-shadow: none;
 }
