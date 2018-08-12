@@ -1,3 +1,4 @@
+import actions from './common/actions'
 import App from './App'
 import { AppContainer } from 'react-hot-loader'
 import { applyMiddleware, compose, createStore } from 'redux'
@@ -47,3 +48,6 @@ if (module.hot) {
     store.replaceReducer(connectRouter(history)(rootReducer))
   })
 }
+
+// init
+store.dispatch(actions.core.init())

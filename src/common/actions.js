@@ -1,4 +1,5 @@
 import { actions as app } from './controllers/app'
+import { actions as unsplash } from './controllers/unsplash'
 
 import constants from './constants'
 
@@ -14,5 +15,6 @@ export default {
     axiosResponse
   },
 
-  app
+  app,
+  unsplash
 }

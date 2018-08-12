@@ -1,18 +1,76 @@
-import React from 'react'
+import React, { Component } from 'react'
 import common from './common'
 
 // elements
 import { ConnectedRouter } from 'connected-react-router'
+import Helmet from 'react-helmet'
+import { Route, Switch } from 'react-router'
 
-// routes
-import routes from './routes'
+// pages
+import Game from './pages/Game'
+import Intro from './pages/Intro'
+import NoMatch from './pages/NoMatch'
 
-const App = ({ history }) => {
-  return <ConnectedRouter history={history}>{routes}</ConnectedRouter>
+const Background = common.lib.styled.div`
+  background: url(${props => props.src}) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0
+`
+
+const Container = common.lib.styled.div`
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 400px;
+  background-color: #ccc;
+  border-radius: 3px;
+  padding: 10px;
+`
+
+class App extends Component {
+  static propTypes = {
+    history: common.lib.PropTypes.object
+  }
+
+  render() {
+    const { currentBackground, history } = this.props
+
+    return (
+      <ConnectedRouter history={history}>
+        <Background src={currentBackground}>
+          <Helmet
+            htmlAttributes={{ lang: 'en', amp: undefined }}
+            titleTemplate={common.config.value('site.titleTemplate')}
+            defaultTitle={common.config.value('site.title')}
+            meta={[{ name: 'description', content: common.config.value('site.description') }, { name: 'keywords', content: common.config.value('site.keywords') }]}
+          />
+
+          <Container>
+            <Switch>
+              <Route exact path="/" component={Intro} />
+              <Route exact path="/game" component={Game} />
+              <Route component={NoMatch} />
+            </Switch>
+          </Container>
+        </Background>
+      </ConnectedRouter>
+    )
+  }
 }
 
-App.propTypes = {
-  history: common.lib.PropTypes.object
-}
+const mapStateToProps = common.lib.createStructuredSelector({
+  currentBackground: common.selectors.unsplash.current()
+})
 
-export default App
+export default common.lib.connect(mapStateToProps)(App)

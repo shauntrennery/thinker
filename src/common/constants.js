@@ -1,4 +1,5 @@
 import { constants as app } from './controllers/app'
+import { constants as unsplash } from './controllers/unsplash'
 
 const init = 'INIT'
 const axiosRequest = 'AXIOS.REQUEST'
@@ -12,5 +13,6 @@ export default {
     response: axiosResponse
   },
 
-  app
+  app,
+  unsplash
 }
