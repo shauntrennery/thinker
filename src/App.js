@@ -33,9 +33,11 @@ const Container = common.lib.styled.div`
   left: 0;
   width: 300px;
   height: 400px;
-  background-color: #ccc;
+  background-color: rgba(255,255,255,0.9);
+  box-shadow: 2px 2px 10px 3px rgba(0,0,0,.2);
   border-radius: 3px;
-  padding: 10px;
+  padding: 20px;
+  text-align: center;
 `
 
 class App extends Component {

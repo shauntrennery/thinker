@@ -2,8 +2,8 @@
   "version": "0.1.0",
   "site": {
     "description": "thinker is a social game for the trivia heads.",
-    "keywords": "thinker, trivia, hq, social game, swipe, brag.",
-    "title": "thinker | Swipe. Rank. Brag.",
+    "keywords": "thinker, trivia, hq, social game, swipe, brag, gloat",
+    "title": "thinker | Swipe. Rank. Gloat.",
     "titleTemplate": "thinker | %s"
   },
   "firebase": {
