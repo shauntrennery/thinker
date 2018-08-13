@@ -1,4 +1,6 @@
+import { actions as unsplashActions } from './unsplash'
 import lib from '../lib'
+import { selectors as questionsSelectors } from './questions'
 import utils from '../utils'
 
 export const constants = {
@@ -8,7 +10,7 @@ export const constants = {
 
 export const actions = {
   begin: () => ({ type: constants.BEGIN }),
-  end: () => ({ type: constants.END })
+  end: score => ({ type: constants.END, score })
 }
 
 const initialState = {
@@ -34,8 +36,22 @@ export const selectors = {
 export const logic = [
   lib.createLogic({
     type: constants.BEGIN,
+    process({ getState }, dispatch, done) {
+      const state = getState()
+      const questions = questionsSelectors.items()(state)
+
+      if (questions && questions.length > 0) {
+        dispatch(unsplashActions.random(questions[0].category.replace(': ', ', ')))
+      }
+
+      done()
+    }
+  }),
+
+  lib.createLogic({
+    type: constants.END,
     process({ action }, dispatch, done) {
-      dispatch(lib.router.push('/swipe'))
+      console.log(action.score)
       done()
     }
   })

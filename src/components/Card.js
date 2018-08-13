@@ -61,6 +61,7 @@ class Card extends Component {
 
   render() {
     const { zIndex } = this.props
+
     return (
       <CardContainer zIndex={zIndex}>
         <CardContent>{this.renderQuestion()}</CardContent>

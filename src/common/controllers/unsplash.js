@@ -68,7 +68,18 @@ export const logic = [
       lib.unsplash.photos
         .getRandomPhoto({ featured, query, w: constants.DEFAULT_WIDTH, h: constants.DEFAULT_HEIGHT, orientation: constants.DEFAULT_ORIENTATION })
         .then(lib.toJson)
-        .then(json => dispatch(actions.randomSuccess(json)))
+        .then(json => {
+          return new Promise((resolve, reject) => {
+            const img = new Image()
+
+            img.onload = function() {
+              dispatch(actions.randomSuccess(json))
+              resolve()
+            }
+
+            img.src = json.urls.regular
+          })
+        })
         .catch(err => dispatch(actions.randomError(err)))
         .then(() => done())
     }

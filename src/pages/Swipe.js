@@ -35,17 +35,42 @@ class Swipe extends Component {
 
     this.state = {
       questions: props.questions || [],
+      score: 0,
       swipeDirection: undefined
     }
   }
 
-  componentReceiveProps = nextProps => {
-    if (!common.lib._.isEqual(this.state.questions, nextProps.questions)) {
-      this.setState({ questions: nextProps.questions, swipeDirection: undefined })
+  componentWillReceiveProps = nextProps => {
+    if (!common.lib._.isEqual(this.props.questions, nextProps.questions)) {
+      this.setState({ questions: nextProps.questions, score: 0, swipeDirection: undefined })
     }
   }
 
-  handleAfterSwipe = () => this.setState(({ questions }) => ({ questions: questions.slice(1, questions.length) }))
+  handleAfterSwipe = () => {
+    const question = this.state.questions[0]
+    const swipeDirection = this.state.swipeDirection
+
+    let isCorrect = 0
+
+    if (question) {
+      if (question.correct_answer === 'True' && swipeDirection === 'right') {
+        isCorrect = 1
+      } else if (question.correct_answer === 'False' && swipeDirection === 'left') {
+        isCorrect = 1
+      }
+    }
+
+    this.setState(
+      ({ questions, score }) => ({ questions: questions.slice(1, questions.length), score: score + isCorrect }),
+      () => {
+        if (this.state.questions.length === 0) {
+          this.props.end(this.state.score)
+        } else if (this.state.questions.length > 0) {
+          this.props.changeBackground(this.state.questions[0].category)
+        }
+      }
+    )
+  }
 
   handleSwipe = swipeDirection => {
     this.setState({ swipeDirection })
@@ -53,8 +78,6 @@ class Swipe extends Component {
 
   render() {
     const { questions } = this.state
-
-    console.log(questions)
 
     return (
       <Fragment>
@@ -88,4 +111,14 @@ const mapStateToProps = common.lib.createStructuredSelector({
   questions: common.selectors.questions.items()
 })
 
-export default common.lib.connect(mapStateToProps)(Swipe)
+function mapDispatchToProps(dispatch) {
+  return {
+    changeBackground: query => dispatch(common.actions.unsplash.random(query)),
+    end: score => dispatch(common.actions.app.end(score))
+  }
+}
+
+export default common.lib.connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Swipe)
