@@ -10,3 +10,4 @@ export const App = firebase.initializeApp(config.value('firebase'))
 export const Auth = App.auth()
 export const DB = App.database()
 export const Storage = App.storage()
+export const TIMESTAMP = firebase.database.ServerValue.TIMESTAMP

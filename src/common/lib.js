@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { createLogic } from 'redux-logic'
 import { createSelectorCreator, createStructuredSelector, defaultMemoize } from 'reselect'
 import PropTypes from 'prop-types'
+import { push } from 'connected-react-router'
 import styled from 'styled-components'
 import Unsplash, { toJson } from 'unsplash-js'
 
@@ -20,6 +21,9 @@ export default {
   createStructuredSelector,
   fb,
   PropTypes,
+  router: {
+    push
+  },
   styled,
   toJson,
   unsplash,

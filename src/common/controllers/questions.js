@@ -22,13 +22,13 @@ export const actions = {
 
 const initialState = {
   error: undefined,
-  items: undefined
+  items: []
 }
 
 export const reducer = function(state = initialState, action) {
   switch (action.type) {
     case constants.LOAD: {
-      return lib._.assign({}, state, { error: undefined })
+      return lib._.assign({}, state, { error: undefined, items: [] })
     }
 
     case constants.LOAD_ERROR: {

@@ -4,7 +4,7 @@ import common from '../common'
 // elements
 import { Link } from 'react-router-dom'
 
-const Button = common.lib.styled(Link)`
+const Button = common.lib.styled.div`
   background-color: #fd5068;
   border-radius: 4px;
   font-size: 1.6rem;
@@ -50,7 +50,13 @@ const Title = common.lib.styled.h1`
 `
 
 class Intro extends Component {
+  handleBeginClick = () => {
+    this.props.begin()
+  }
+
   render() {
+    const { questions } = this.props
+
     return (
       <Fragment>
         <Title>thinker...</Title>
@@ -58,11 +64,26 @@ class Intro extends Component {
         <Copy>
           Get your name on the <u>global leaderboard</u> by swiping through the following 10 questions in the <u>quickest</u> time.
         </Copy>
-        <Button to="/swipe">Begin</Button>
+        <Button disabled={questions.length === 0} onClick={this.handleBeginClick}>
+          Begin
+        </Button>
         <Leaderboard to="/leaderboard">Leaderboard</Leaderboard>
       </Fragment>
     )
   }
 }
 
-export default Intro
+const mapStateToProps = common.lib.createStructuredSelector({
+  questions: common.selectors.questions.items()
+})
+
+function mapDispatchToProps(dispatch) {
+  return {
+    begin: () => dispatch(common.actions.app.begin())
+  }
+}
+
+export default common.lib.connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Intro)

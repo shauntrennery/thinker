@@ -143,6 +143,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+:focus {
+  outline: none;
+}
+
 .card {
   background-color: white;
   background-size: cover;
