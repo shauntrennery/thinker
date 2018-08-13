@@ -22,7 +22,7 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.BEGIN: {
-      return lib._.assign({}, state, { beginTime: new Date().getTime() })
+      return lib._.assign({}, state, { beginTime: new Date().getTime(), endTime: undefined })
     }
 
     case constants.END: {

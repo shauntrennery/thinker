@@ -137,10 +137,14 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  height: 100%;
 }
 
 body {
   font-family: 'Montserrat', sans-serif;
+  background: #c9d6ff;
+  background: -webkit-linear-gradient(to right, #e2e2e2, #c9d6ff);
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
 }
 
 :focus {
