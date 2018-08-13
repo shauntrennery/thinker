@@ -7,7 +7,7 @@ import Helmet from 'react-helmet'
 import { Route, Switch } from 'react-router'
 
 // pages
-
+import GameOver from './pages/GameOver'
 import Intro from './pages/Intro'
 import NoMatch from './pages/NoMatch'
 import Swipe from './pages/Swipe'
@@ -64,6 +64,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Intro} />
               <Route exact path="/swipe" component={Swipe} />
+              <Route exact path="/gameover" component={GameOver} />
               <Route component={NoMatch} />
             </Switch>
           </Container>

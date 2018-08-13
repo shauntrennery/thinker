@@ -66,7 +66,7 @@ class Swipe extends Component {
         if (this.state.questions.length === 0) {
           this.props.end(this.state.score)
         } else if (this.state.questions.length > 0) {
-          this.props.changeBackground(this.state.questions[0].category)
+          this.props.changeBackground(this.state.questions[0].category.replace(': ', ', '))
         }
       }
     )

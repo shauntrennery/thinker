@@ -24,5 +24,13 @@ export const logic = [
       dispatch(lib.router.push('/swipe'))
       done()
     }
+  }),
+
+  lib.createLogic({
+    type: appConstants.END,
+    process({ action }, dispatch, done) {
+      dispatch(lib.router.push('/gameover'))
+      done()
+    }
   })
 ]

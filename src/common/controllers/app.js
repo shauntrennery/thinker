@@ -14,13 +14,19 @@ export const actions = {
 }
 
 const initialState = {
-  timestamp: undefined
+  beginTime: undefined,
+  endTime: undefined,
+  score: 0
 }
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.BEGIN: {
-      return lib._.assign({}, state, { timestamp: new Date().getTime() })
+      return lib._.assign({}, state, { beginTime: new Date().getTime() })
+    }
+
+    case constants.END: {
+      return lib._.assign({}, state, { endTime: new Date().getTime(), score: action.score })
     }
 
     default:
@@ -30,7 +36,9 @@ export const reducer = (state = initialState, action) => {
 
 export const selectors = {
   app: () => state => utils.fromState(state, 'app'),
-  timestamp: () => lib.createSelector(selectors.app(), state => utils.fromState(state, 'timestamp'))
+  beginTime: () => lib.createSelector(selectors.app(), state => utils.fromState(state, 'beginTime')),
+  endTime: () => lib.createSelector(selectors.app(), state => utils.fromState(state, 'endTime')),
+  score: () => lib.createSelector(selectors.app(), state => utils.fromState(state, 'score'))
 }
 
 export const logic = [
@@ -44,14 +52,6 @@ export const logic = [
         dispatch(unsplashActions.random(questions[0].category.replace(': ', ', ')))
       }
 
-      done()
-    }
-  }),
-
-  lib.createLogic({
-    type: constants.END,
-    process({ action }, dispatch, done) {
-      console.log(action.score)
       done()
     }
   })

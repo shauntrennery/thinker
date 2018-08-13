@@ -53,7 +53,7 @@ class Card extends Component {
       return (
         <Fragment>
           <Category>{question.category}</Category>
-          <Question dangerouslySetInnerHTML={{ __html: question.question }} />
+          <Question dangerouslySetInnerHTML={{ __html: question.question + '?' }} />
         </Fragment>
       )
     }

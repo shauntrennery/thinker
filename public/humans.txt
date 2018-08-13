@@ -1,0 +1,12 @@
+/* TEAM */
+	Dev: Shaun Trennery
+	Contact: shaun.trennery [at] gmail.com
+	Twitter: @shauntrennery
+	From:Durban, South Africa
+
+/* SITE */
+	Last update: 2018/08/13
+	Language: English
+	Doctype: HTML5
+	IDE: Code
+  Components: React, Redux, Firebase, Unsplash
