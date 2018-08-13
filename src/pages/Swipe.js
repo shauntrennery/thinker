@@ -101,7 +101,6 @@ class Swipe extends Component {
             {questions.length > 1 && <Card zIndex={-1} question={questions[1]} />}
           </SwipeableContainer>
         )}
-        {questions.length <= 1 && <Card zIndex={-2} />}
       </Fragment>
     )
   }

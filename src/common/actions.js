@@ -1,4 +1,5 @@
 import { actions as app } from './controllers/app'
+import { actions as leaderboard } from './controllers/leaderboard'
 import { actions as questions } from './controllers/questions'
 import { actions as unsplash } from './controllers/unsplash'
 
@@ -17,6 +18,7 @@ export default {
   },
 
   app,
+  leaderboard,
   questions,
   unsplash
 }
