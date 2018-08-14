@@ -13,8 +13,8 @@ export const constants = {
 
 export const actions = {
   recordScore: (name, score, time) => ({ type: constants.RECORD_SCORE, name, score, time }),
-  scoreAdded: snapshot => ({ type: constants.SCORE_ADDED, snapshot }),
-  scoreRemoved: snapshot => ({ type: constants.SCORE_REMOVED, snapshot })
+  scoreAdded: (key, value) => ({ type: constants.SCORE_ADDED, key, value }),
+  scoreRemoved: (key, value) => ({ type: constants.SCORE_REMOVED, key, value })
 }
 
 // firebase references
@@ -29,12 +29,19 @@ export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.SCORE_ADDED: {
       const leaders = state.leaders
-      leaders.push(lib._.assign({}, action.snapshot.val(), { key: action.snapshot.key }))
-      return lib._.assign({}, state, { leaders })
+
+      const index = lib._.findIndex(leaders, leader => leader.key === action.key)
+
+      if (index === -1) {
+        leaders.push(lib._.assign({}, action.value, { key: action.key }))
+        return lib._.assign({}, state, { leaders })
+      } else {
+        return state
+      }
     }
 
     case constants.SCORE_REMOVED: {
-      const leaders = lib._.filter(state.leaders, leader => leader.key !== action.snapshot.key)
+      const leaders = lib._.filter(state.leaders, leader => leader.key !== action.key)
       return lib._.assign({}, state, { leaders })
     }
 
@@ -52,12 +59,25 @@ export const logic = [
   lib.createLogic({
     type: INIT,
     warnTimeout: 0,
+    processOptions: {
+      dispatchMultiple: true
+    },
     process({ action }, dispatch) {
       _ref = lib.fb.DB.ref('/leaderboard')
-      _view = _ref.limitToLast(constants.LEADERBOARD_SIZE)
+      _view = _ref.orderByPriority().limitToLast(constants.LEADERBOARD_SIZE)
 
-      _view.on('child_added', snapshot => dispatch(actions.scoreAdded(snapshot)))
-      _view.on('child_removed', snapshot => dispatch(actions.scoreRemoved(snapshot)))
+      _view.on('value', snapshot => {
+        const leaders = snapshot.val()
+
+        if (leaders) {
+          lib._.forEach(lib._.keys(leaders), key => {
+            dispatch(actions.scoreAdded(key, leaders[key]))
+          })
+        }
+      })
+
+      _view.on('child_added', snapshot => dispatch(actions.scoreAdded(snapshot.key, snapshot.val())))
+      _view.on('child_removed', snapshot => dispatch(actions.scoreRemoved(snapshot.key, snapshot.val())))
     }
   }),
 

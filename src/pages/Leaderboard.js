@@ -26,7 +26,7 @@ const List = common.lib.styled.ol`
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid #E1E4E8;
-  margin: 20px 10px 20px 20px;
+  margin: 40px 0 40px 10px;
   text-align: left;
   list-style-type: decimal;
 `
@@ -52,7 +52,9 @@ class Leaderboard extends Component {
     let listItems = []
 
     for (let i = 0; i < 10; i++) {
-      listItems.push(<ListItem key={`item-${i}`}>{leaders[i] ? `${leaders[i].name} - ${leaders[i].score}/10 ${leaders[i].time.toFixed(2)}s - ${common.utils.formatDate(leaders[i].timestamp)}` : '...'}</ListItem>)
+      const leader = leaders[i]
+      console.log(leader)
+      listItems.push(<ListItem key={`item-${i}`}>{leader ? `${leader.name} - ${leader.score}/10 ${leader.time.toFixed(2)}s - ${common.utils.formatDate(leader.timestamp)}` : '...'}</ListItem>)
     }
 
     return (
