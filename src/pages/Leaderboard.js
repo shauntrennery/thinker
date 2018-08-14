@@ -53,7 +53,6 @@ class Leaderboard extends Component {
 
     for (let i = 0; i < 10; i++) {
       const leader = leaders[i]
-      console.log(leader)
       listItems.push(<ListItem key={`item-${i}`}>{leader ? `${leader.name} - ${leader.score}/10 ${leader.time.toFixed(2)}s - ${common.utils.formatDate(leader.timestamp)}` : '...'}</ListItem>)
     }
 
