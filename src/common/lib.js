@@ -5,6 +5,7 @@ import config from './config'
 import { connect } from 'react-redux'
 import { createLogic } from 'redux-logic'
 import { createSelectorCreator, createStructuredSelector, defaultMemoize } from 'reselect'
+import { format } from 'date-fns'
 import PropTypes from 'prop-types'
 import { push } from 'connected-react-router'
 import styled from 'styled-components'
@@ -19,6 +20,9 @@ export default {
   createLogic,
   createSelector: createDeepEqualSelector,
   createStructuredSelector,
+  datefn: {
+    format
+  },
   fb,
   PropTypes,
   router: {

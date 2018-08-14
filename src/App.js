@@ -9,6 +9,7 @@ import { Route, Switch } from 'react-router'
 // pages
 import GameOver from './pages/GameOver'
 import Intro from './pages/Intro'
+import Leaderboard from './pages/Leaderboard'
 import NoMatch from './pages/NoMatch'
 import Swipe from './pages/Swipe'
 
@@ -65,6 +66,7 @@ class App extends Component {
               <Route exact path="/" component={Intro} />
               <Route exact path="/swipe" component={Swipe} />
               <Route exact path="/gameover" component={GameOver} />
+              <Route exact path="/leaderboard" component={Leaderboard} />
               <Route component={NoMatch} />
             </Switch>
           </Container>

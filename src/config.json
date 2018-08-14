@@ -18,5 +18,8 @@
     "applicationId": "eb2b23de78cecc162265f5febb1ad1c1cdd61200e5726ca3913cd57aac418fb7",
     "key": "159a41beaf79441cd961d93a5ec0b0d0097af0edadf42c8b918967b44c2ea6b1"
   },
-  "questionAPIEndpoint": "https://opentdb.com/api.php"
+  "questionAPIEndpoint": "https://opentdb.com/api.php",
+  "defaultLocale": "en",
+  "dateFormat": "Do MMM YYYY",
+  "dateTimeFormat": "D MMM YYYY"
 }

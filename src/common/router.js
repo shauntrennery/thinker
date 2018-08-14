@@ -1,4 +1,5 @@
 import { constants as appConstants } from './controllers/app'
+import { constants as leaderboardConstants } from './controllers/leaderboard'
 import lib from './lib'
 
 const INIT = 'INIT'
@@ -30,6 +31,14 @@ export const logic = [
     type: appConstants.END,
     process({ action }, dispatch, done) {
       dispatch(lib.router.push('/gameover'))
+      done()
+    }
+  }),
+
+  lib.createLogic({
+    type: leaderboardConstants.RECORD_SCORE,
+    process({ action }, dispatch, done) {
+      dispatch(lib.router.push('/leaderboard'))
       done()
     }
   })
