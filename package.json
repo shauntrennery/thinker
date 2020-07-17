@@ -8,7 +8,7 @@
     "date-fns": "1.29.0",
     "firebase": "5.3.1",
     "history": "4.7.2",
-    "lodash": "4.17.10",
+    "lodash": "4.17.19",
     "prop-types": "15.6.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
